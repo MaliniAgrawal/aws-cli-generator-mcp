@@ -1,0 +1,33 @@
+name: MCP Docker Build & Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Set up Docker
+      uses: docker/setup-buildx-action@v3
+
+    - name: Build Docker image
+      run: docker build -t mcp-test .
+
+    - name: Run Docker container (basic test)
+      run: |
+        docker run -d -p 5000:5000 --name mcp-container mcp-test
+        sleep 5
+        curl --fail http://localhost:5000 || (echo "Flask server did not respond" && exit 1)
+
+    - name: Cleanup
+      if: always()
+      run: |
+        docker stop mcp-container || true
+        docker rm mcp-container || true
