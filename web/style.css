@@ -1,0 +1,83 @@
+/* Light mode */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f8f9fa;
+    color: #333;
+    text-align: center;
+}
+
+header {
+    background-color: #007acc;
+    padding: 15px;
+    color: white;
+}
+
+button {
+    padding: 10px 15px;
+    margin-left: 10px;
+    cursor: pointer;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+.input-container {
+    margin-top: 30px;
+}
+
+input {
+    padding: 10px;
+    width: 60%;
+    max-width: 400px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.result-box {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 5px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.result-box.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.result-box.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Dark mode */
+.dark-mode {
+    background-color: #121212;
+    color: #ddd;
+}
+
+.dark-mode header {
+    background-color: #1e1e1e;
+}
+
+.dark-mode .result-box.success {
+    background-color: #1a3a1a;
+}
+
+.dark-mode .result-box.error {
+    background-color: #3a1a1a;
+}
+
+footer {
+    margin-top: 50px;
+    font-size: 1.29em;
+    color: gray;
+}
