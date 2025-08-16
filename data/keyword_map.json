@@ -1,0 +1,28 @@
+{
+  "actions": {
+    "create": ["create", "make", "provision", "spin up", "spin-up", "build", "init", "initialize", "setup", "set up"],
+    "delete": ["delete", "remove", "drop", "destroy", "tear down", "teardown"],
+    "list": ["list", "show", "display", "get all", "enumerate"],
+    "describe": ["describe", "details", "info", "information", "inspect"],
+    "start": ["start", "power on", "boot", "turn on"],
+    "stop": ["stop", "power off", "shut down", "shutdown", "turn off"],
+    "attach": ["attach", "bind", "associate"],
+    "detach": ["detach", "unbind", "disassociate"],
+    "update": ["update", "modify", "change", "edit"]
+  },
+  "resources": {
+    "s3": ["s3", "bucket", "storage bucket", "object storage"],
+    "ec2": ["ec2", "instance", "vm", "server", "compute"],
+    "iam": ["iam", "user", "role", "policy", "group", "identity"],
+    "dynamodb": ["dynamodb", "ddb", "table", "nosql"],
+    "apigateway": ["apigateway", "api gateway", "api", "rest api"]
+  },
+  "regions": [
+    "us-east-1","us-east-2","us-west-1","us-west-2",
+    "eu-west-1","eu-central-1","ap-south-1","ap-southeast-1","ap-southeast-2"
+  ],
+  "common_alias": {
+    "name": ["name", "called", "named"],
+    "region": ["region", "in", "location"]
+  }
+}
