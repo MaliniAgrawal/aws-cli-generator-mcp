@@ -2,7 +2,7 @@
 
  🛠️ AWS CLI Generator MCP – Phase 1 (Local)
 
-This project is a Modular Command Parser (MCP) server that converts natural language (NLP) into AWS CLI commands, designed for cloud support engineers, developers, and DevOps practitioners.
+This project is a Model Context Protocol (MCP) server that converts natural language (NLP) into AWS CLI commands, designed for cloud support engineers, developers, and DevOps practitioners.
 Phase 1 is focused on local development:
 
  ✅ Modular parsers for S3, EC2, IAM, DynamoDB, API Gateway
