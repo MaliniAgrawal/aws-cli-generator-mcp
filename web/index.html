@@ -3,27 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MCP AWS CLI Generator</title>
+    <title>AWS CLI Generator</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-    <header>
-        <h1>MCP AWS CLI Generator</h1>
-        <button id="darkModeToggle">🌙 Toggle Dark Mode</button>
-    </header>
-
-    <main>
-        <div class="input-container">
-            <input id="nlpInput" type="text" placeholder="Describe your AWS task...">
-            <button id="generateBtn">Generate CLI</button>
+    <div class="container">
+        <div class="header">
+            <h1>AWS CLI Generator</h1>
+            <p class="subtitle">Transform natural language into AWS CLI commands instantly</p>
+            <button class="toggle-dark-mode" onclick="toggleDarkMode()">🌙</button>
         </div>
-        <div id="result" class="result-box"></div>
-    </main>
+        
+        <div class="input-section">
+            <label for="nlp-input">Describe your AWS task:</label>
+            <textarea 
+                id="nlp-input" 
+                rows="4" 
+                placeholder="Examples:&#10;• Create an S3 bucket named mybucket in us-east-1&#10;• List all EC2 instances in us-west-2&#10;• Create a Lambda function with Python runtime&#10;• Set up an dynamodb table"
+            ></textarea>
+            <div class="button-group">
+                <button onclick="generateCLI()">Generate CLI</button>
+                <button onclick="clearAll()">Clear All</button>
+                <button onclick="loadExample()">Load Example</button>
+            </div>
+        </div>
 
-    <footer>
-        <p>🚀 Built for MCP Marketplace Demo — v1.0</p>
-    </footer>
+        <div class="output-section" id="output-section" style="display: none;">
+            <h3>Generated Command:</h3>
+            <div class="command-container">
+                <pre id="cli-command"></pre>
+                <button class="copy-button" onclick="copyToClipboard()">Copy</button>
+            </div>
+            <h3>Explanation:</h3>
+            <pre id="cli-explanation"></pre>
+        </div>
+        
+        <div class="history-section">
+            <h3>Command History</h3>
+            <button onclick="clearHistory()">Clear History</button>
+            <div id="history-list"></div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

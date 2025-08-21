@@ -1,0 +1,55 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: AWS CLI Generator MCP - Phase 2 (Flask + Mangum)
+
+Globals:
+  Function:
+    Timeout: 10
+    MemorySize: 512
+    Runtime: python3.10
+
+Resources:
+  McpApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: mcp-cli-backend
+      CodeUri: .
+      Handler: src/aws_mcp_cli/mcp_server.handler
+      Runtime: python3.10
+      MemorySize: 512
+      Timeout: 10
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+
+  WebBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "${AWS::StackName}-frontend"
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: index.html
+
+  WebBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref WebBucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal: "*"
+            Action: "s3:GetObject"
+            Resource: !Sub "${WebBucket.Arn}/*"
+
+Outputs:
+  ApiUrl:
+    Description: API Gateway endpoint URL
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
+
+  WebUrl:
+    Description: S3 hosted frontend URL
+    Value: !GetAtt WebBucket.WebsiteURL

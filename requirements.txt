@@ -1,21 +1,7 @@
-# Web server
-flask==2.3.3
-
-# AWS Lambda + Flask compatibility
 mangum==0.17.0
-
-# AWS SDK for Python (if you want to access S3, EC2, etc.)
-boto3==1.34.0
-
-# For parsing natural language (optional - for NLP phase)
+Flask==2.3.3
+flask-cors==4.0.0
+boto3
 spacy==3.7.2
-# Optional model - install manually or in code
-# python -m spacy download en_core_web_sm
-
-# For CLI templating and validation
-#jinja2==3.1.3
-#jsonschema==4.21.1
-
-# For local development and testing
 requests==2.31.0
 pytest==7.4.4
