@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AWS CLI Generator MCP</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 AWS CLI Generator MCP</h1>
+        <p>Type your request in plain English and get the AWS CLI command instantly.</p>
+
+        <!-- Input area -->
+        <textarea id="nlpInput" placeholder="e.g., create s3 bucket named mybucket in us-east-1"></textarea>
+        
+        <div class="btn-row">
+            <button id="generateBtn">🚀 Generate Command</button>
+            <button id="copyBtn">📋 Copy Command</button>
+        </div>
+        <div class="btn-row">
+             <!--button id="generateBtn">Generate Command</button> -->
+            <button id="clearBtn">Clear</button>
+            <button id="themeToggle">🌙 Toggle Theme</button>
+            <!-- <button id="copyBtn">📋 Copy Command</button> -->
+        </div>
+
+
+        <!-- Result display -->
+        <pre id="result">💡 Your generated command will appear here...</pre>
+
+        <!-- Example buttons -->
+        <h3>✨ Try Examples</h3>
+        <div id="examples">
+          <button class="example">create s3 bucket mybucket in us-east-1</button>
+          <button class="example">launch ec2 instance t2.micro in us-west-2</button>
+          <button class="example">add iam user developer</button>
+          <button class="example">create dynamodb table MyTable</button>
+          <button class="example">create http api name myapi in us-west-2</button>
+          <button class="example">create rest api name myapi in us-east-1</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  AWS CLI Generator MCP - Phase 3
+  Flask app on Lambda + API Gateway + DynamoDB logging
+
+Globals:
+  Function:
+    Timeout: 30
+    MemorySize: 512
+    Runtime: python3.10
+
+Resources:
+  MCPApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+
+  MCPFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: MCPServerFunction
+      Handler: aws_mcp_cli.mcp_server.app
+      CodeUri: ./src
+      Runtime: python3.10
+      Events:
+        Root:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MCPApi
+            Path: /
+            Method: ANY
+        MCPGenerate:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MCPApi
+            Path: /generate
+            Method: POST
+        Health:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MCPApi
+            Path: /health
+            Method: GET
+      Environment:
+        Variables:
+          MCP_LOGS_TABLE: !Ref MCPLogsTable
+          AWS_REGION: !Ref AWS::Region
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref MCPLogsTable
+
+  MCPLogsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: MCPCommandLogs
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: RequestId
+          AttributeType: S
+      KeySchema:
+        - AttributeName: RequestId
+          KeyType: HASH
+
+Outputs:
+  ApiUrl:
+    Description: "API Gateway endpoint"
+    Value: !Sub "https://${MCPApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
